@@ -51,7 +51,7 @@ autofarms:Toggle("Auto-Purchase", false, function(value)
         while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 1)
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 0)
-        wait()
+        wait(0.15)
     end
 end)
 
@@ -64,7 +64,7 @@ autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
         while tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)) == nil do currentSpeedUpgrade = currentSpeedUpgrade + 1 end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 1)
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 0)
-        wait()
+        wait(0.15)
     end
 end)
 
@@ -81,7 +81,7 @@ autofarms:Toggle("Auto-Rebirth", false, function(value)
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = tycoon.Unlocked.RebirthStatue.RebirthPart.CFrame
             fireproximityprompt(tycoon.Unlocked:FindFirstChild("RebirthStatue"):FindFirstChild("RebirthPart"):FindFirstChildOfClass("ProximityPrompt"))
         end
-        wait()
+        wait(0.1)
     end
 end)
 
