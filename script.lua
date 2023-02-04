@@ -12,8 +12,7 @@ for i, v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
     end
 end
 if tycoon == nil then
-    library:Notification("Error!", "You don\'t own a tycoon yet! Get one and press \"Done\" once you\'re done", "Done")
-
+    library:Notification("Error!", "You don\'t own a tycoon!", "idot")
 end
 
 autofarms:Toggle("Auto-Feed", false, function(value)
@@ -74,13 +73,8 @@ autofarms:Toggle("Auto-Rebirth", false, function(value)
     while _G.AutoRebirthEnabled do
         game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
         game:GetService("Lighting").UIBlur.Enabled = false
-        if tycoon.Unlockables.RebirthStatue.Main ~= nil then
-            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
-            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
-        end
-        if tycoon.Unlocked.RebirthStatue then
-            fireproximityprompt(tycoon.Unlocked.RebirthStatue.RebirthPart.ProximityPrompt, 0)
-        end
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
         wait()
     end
 end)
