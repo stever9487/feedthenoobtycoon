@@ -73,8 +73,13 @@ autofarms:Toggle("Auto-Rebirth", false, function(value)
     while _G.AutoRebirthEnabled do
         game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
         game:GetService("Lighting").UIBlur.Enabled = false
-        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
-        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
+        if tycoon.Unlockables:FindFirstChild("RebirthStatue") then
+            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
+            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
+        end
+        if tycoon.Unlocked:FindFirstChild("RebirthStatue") and tycoon.Unlocked:FindFirstChild("RebirthStatue"):FindFirstChild("RebirthPart") then
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = tycoon.Unlocked.RebirthStatue.RebirthPart.CFrame
+        end
         wait()
     end
 end)
