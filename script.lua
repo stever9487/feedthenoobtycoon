@@ -43,7 +43,6 @@ autofarms:Toggle("Auto-Collect", false, function(value)
     end
 end)
 
-local AutoPurchase
 local currentButton = 1
 autofarms:Toggle("Auto-Purchase", false, function(value)
     _G.AutoPurchaseEnabled = value
@@ -57,7 +56,6 @@ autofarms:Toggle("Auto-Purchase", false, function(value)
     end
 end)
 
-local AutoSpeedUpgrade
 local currentSpeedUpgrade = 1
 autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
     _G.AutoSpeedUpgradeEnabled = value
@@ -67,6 +65,15 @@ autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
         while tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)) == nil do currentSpeedUpgrade = currentSpeedUpgrade + 1 end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 1)
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 0)
+        wait()
+    end
+end)
+
+autofarms:Toggle("Auto-Rebirth", false, function(value)
+    _G.AutoRebirthEnabled = value
+    while _G.AutoRebirthEnabled do
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
         wait()
     end
 end)
