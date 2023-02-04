@@ -48,13 +48,27 @@ local currentButton = 1
 local price
 autofarms:Toggle("Auto-Purchase", false, function(value)
     _G.AutoPurchaseEnabled = value
-    if _G.AutoPurchaseEnabled then
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
-    end
     while _G.AutoPurchaseEnabled do
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
+        game:GetService("Lighting").UIBlur.Enabled = false
         while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
-        firetouchinterest(tycoon.DropperButtons[tostring(currentButton)].Main, 1)
-        firetouchinterest(tycoon.DropperButtons[tostring(currentButton)].Main, 0)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 1)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 0)
+        wait()
+    end
+end)
+
+local AutoSpeedUpgrade
+local currentButton = 1
+local price
+autofarms:Toggle("Auto-Purchase", false, function(value)
+    _G.AutoSpeedUpgradeEnabled = value
+    while _G.AutoSpeedUpgradeEnabled do
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
+        game:GetService("Lighting").UIBlur.Enabled = false
+        while tycoon.SpeedUpgrades:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentButton)).Main, 1)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentButton)).Main, 0)
         wait()
     end
 end)
