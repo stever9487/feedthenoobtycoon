@@ -2,13 +2,13 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid
 local win = library:Window("Feed The Noob Tycoon")
 local serv = win:Server("Cheats", "")
 local autofarms = serv:Channel("auto-farms")
-local obbies = serv:Channel("obbies")
-local debug = serv:Channel("debug")
+local frenzy = serv:Channel("frenzy-time")
+local misc = serv:Channel("misc")
 local tycoon
 for i, v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
     if v:FindFirstChild("TycoonInfo").Owner.Value == game:GetService("Players").LocalPlayer then
         tycoon = v
-        debug:Label("you have tycoon number "..v.Name)
+        misc:Label("you have tycoon number "..v.Name)
     end
 end
 
@@ -37,12 +37,34 @@ autofarms:Toggle("Auto-Collect", false, function(value)
     end
 end)
 
-obbies:Button("win easy obby", function(bool)
+frenzy:Toggle("Frenzy Time", false, function(value)
+    _G.FrenzyTimeEnabled = value
+    while _G.FrenzyTimeEnabled do
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Hard Obby"], 0)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Hard Obby"], 1)
+        repeat wait() until game:GetService("Players").lolpippiou.PlayerGui.FDN.TopFrame.BoostHolder.FrenzyTime.Text == "Frenzy Time - x2 Food: 01:00"
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Easy Obby"], 0)
+        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Easy Obby"], 1)
+        repeat wait() until game:GetService("Players").lolpippiou.PlayerGui.FDN.TopFrame.BoostHolder.FrenzyTime.Text == "Frenzy Time - x2 Food: 01:00"
+    end
+end)
+
+frenzy:Button("Win Easy Obby", function()
     firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Easy Obby"], 0)
     firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Easy Obby"], 1)
 end)
 
-obbies:Button("win hard obby", function(bool)
+frenzy:Button("Win Hard Obby", function()
     firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Hard Obby"], 0)
     firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Hard Obby"], 1)
+end)
+
+misc:Button("rejoin", function()
+    if #game:GetService("Players"):GetPlayers() <= 1 then
+		game:GetService("Players").LocalPlayer:Kick("\nRejoining...")
+		wait()
+		TeleportService:Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+	else
+		TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+	end
 end)
