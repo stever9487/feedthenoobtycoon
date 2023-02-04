@@ -43,6 +43,24 @@ autofarms:Toggle("Auto-Collect", false, function(value)
     end
 end)
 
+local AutoPurchase
+local currentButton = 1
+local price
+autofarms:Toggle("Auto-Purchase", false, function(value)
+    _G.AutoPurchaseEnabled = value
+    if _G.AutoPurchaseEnabled then
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
+    else
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = true
+    end
+    while _G.AutoPurchaseEnabled do
+        while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
+        firetouchinterest(tycoon.DropperButtons[tostring(currentButton)].Main, 1)
+        firetouchinterest(tycoon.DropperButtons[tostring(currentButton)].Main, 0)
+        wait()
+    end
+end)
+
 frenzy:Toggle("Frenzy Time", false, function(value)
     _G.FrenzyTimeEnabled = value
     while _G.FrenzyTimeEnabled do
