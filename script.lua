@@ -59,7 +59,7 @@ end)
 
 local AutoSpeedUpgrade
 local currentSpeedUpgrade = 1
-autofarms:Toggle("Auto-Purchase", false, function(value)
+autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
     _G.AutoSpeedUpgradeEnabled = value
     while _G.AutoSpeedUpgradeEnabled do
         game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
