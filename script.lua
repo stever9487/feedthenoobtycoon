@@ -24,10 +24,16 @@ autofarms:Toggle("Auto-Feed", false, function(value)
     end
 end)
 
+local function removeShit()
+    game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame:Destroy()
+    game:GetService("Lighting").UIBlur:Destroy()
+end
+
 local CollectingItems
 autofarms:Toggle("Auto-Collect", false, function(value)
     _G.AutoCollectEnabled = value
     if _G.AutoCollectEnabled then
+        pcall(removeShit)
         local function CollectItemAdded(v)
             if _G.AutoCollectEnabled == false then
                 CollectingItems:Disconnect()
@@ -42,14 +48,18 @@ autofarms:Toggle("Auto-Collect", false, function(value)
     end
 end)
 
-local currentButton
+local currentButton = 1
 autofarms:Toggle("Auto-Purchase", false, function(value)
     _G.AutoPurchaseEnabled = value
     while _G.AutoPurchaseEnabled do
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
-        game:GetService("Lighting").UIBlur.Enabled = false
-        currentButton = 1
-        while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
+        pcall(removeShit)
+        while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do
+            currentButton = currentButton + 1
+            if currentButton == 90 then
+                currentButton = 1
+            end
+            print("current button is "..tostring(currentButton))
+        end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 1)
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.DropperButtons:FindFirstChild(tostring(currentButton)).Main, 0)
         wait(0.15)
@@ -60,8 +70,7 @@ local currentSpeedUpgrade
 autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
     _G.AutoSpeedUpgradeEnabled = value
     while _G.AutoSpeedUpgradeEnabled do
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame:Destroy()
-        game:GetService("Lighting").UIBlur:Destroy()
+        pcall(removeShit)
         currentSpeedUpgrade = 1
         while tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)) == nil do currentSpeedUpgrade = currentSpeedUpgrade + 1 end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 1)
@@ -73,8 +82,7 @@ end)
 autofarms:Toggle("Auto-Rebirth", false, function(value)
     _G.AutoRebirthEnabled = value
     while _G.AutoRebirthEnabled do
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
-        game:GetService("Lighting").UIBlur.Enabled = false
+        pcall(removeShit)
         if tycoon.Unlockables:FindFirstChild("RebirthStatue") then
             firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables:FindFirstChild("RebirthStatue").Main, 1)
             firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables:FindFirstChild("RebirthStatue").Main, 0)
