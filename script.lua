@@ -50,8 +50,6 @@ autofarms:Toggle("Auto-Purchase", false, function(value)
     _G.AutoPurchaseEnabled = value
     if _G.AutoPurchaseEnabled then
         game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
-    else
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = true
     end
     while _G.AutoPurchaseEnabled do
         while tycoon.DropperButtons:FindFirstChild(tostring(currentButton)) == nil do currentButton = currentButton + 1 end
@@ -102,7 +100,7 @@ misc:Toggle("Noclip", false, function(value)
 	local function NoclipLoop()
 		if value == true and game:GetService("Players").LocalPlayer.Character ~= nil then
 			for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-				if child:IsA("BasePart") and game:GetService("Players").LocalPlayer.CanCollide == true then
+				if child:IsA("BasePart") and child.CanCollide == true then
 					child.CanCollide = false
 				end
 			end
