@@ -67,7 +67,7 @@ frenzy:Button("Win Hard Obby", function()
     firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").ObbyRewardButtons["Hard Obby"], 1)
 end)
 
-misc:Button("rejoin", function()
+misc:Button("Rejoin", function()
     if #game:GetService("Players"):GetPlayers() <= 1 then
         game:GetService("Players").LocalPlayer:Kick("\nRejoining...")
         wait()
@@ -75,4 +75,22 @@ misc:Button("rejoin", function()
     else
         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
     end
+end)
+
+local Noclipping
+
+misc:Toggle("Noclip", false, function(value)
+	wait(0.1)
+	local function NoclipLoop()
+		if value == true and game:GetService("Players").LocalPlayer.Character ~= nil then
+			for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and game:GetService("Players").LocalPlayer.CanCollide == true then
+					child.CanCollide = false
+				end
+			end
+		else
+            Noclipping:Disconnect()
+        end
+	end
+	Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
 end)
