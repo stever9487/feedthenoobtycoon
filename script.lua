@@ -11,6 +11,10 @@ for i, v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
         misc:Label("you have tycoon number "..v.Name)
     end
 end
+if tycoon == nil then
+    library:Notification("Error!", "You don\'t own a tycoon yet! Get one and press \"Done\" once you\'re done", "Done")
+
+end
 
 autofarms:Toggle("Auto-Feed", false, function(value)
     _G.AutoFeedEnabled = value
@@ -21,16 +25,18 @@ autofarms:Toggle("Auto-Feed", false, function(value)
     end
 end)
 
+local CollectingItems
 autofarms:Toggle("Auto-Collect", false, function(value)
     _G.AutoCollectEnabled = value
     if _G.AutoCollectEnabled then
-        local CollectItemAdded = tycoon.ItemDebris.ChildAdded:Connect(function(v)
+        local function CollectItemAdded(v)
             if _G.AutoCollectEnabled == false then
-                CollectItemAdded:Disconnect()
+                CollectingItems:Disconnect()
                 return
             end
             game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("CollectItem"):InvokeServer(v)
-        end)
+        end
+        CollectingItems = tycoon.ItemDebris.ChildAdded:Connect(CollectItemAdded)
         for i, v in pairs(tycoon.ItemDebris:GetChildren()) do
             game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("CollectItem"):InvokeServer(v)
         end
