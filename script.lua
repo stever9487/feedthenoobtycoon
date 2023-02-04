@@ -79,6 +79,7 @@ autofarms:Toggle("Auto-Rebirth", false, function(value)
         end
         if tycoon.Unlocked:FindFirstChild("RebirthStatue") and tycoon.Unlocked:FindFirstChild("RebirthStatue"):FindFirstChild("RebirthPart") then
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = tycoon.Unlocked.RebirthStatue.RebirthPart.CFrame
+            fireproximityprompt(tycoon.Unlocked:FindFirstChild("RebirthStatue"):FindFirstChild("RebirthPart"):FindFirstChildOfClass("ProximityPrompt"))
         end
         wait()
     end
