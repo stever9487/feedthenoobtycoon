@@ -59,8 +59,8 @@ local currentSpeedUpgrade = 1
 autofarms:Toggle("Auto-Speed-Upgrade", false, function(value)
     _G.AutoSpeedUpgradeEnabled = value
     while _G.AutoSpeedUpgradeEnabled do
-        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
-        game:GetService("Lighting").UIBlur.Enabled = false
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame:Destroy()--.Visible = false
+        game:GetService("Lighting").UIBlur:Destroy()--.Enabled = false
         while tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)) == nil do currentSpeedUpgrade = currentSpeedUpgrade + 1 end
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 1)
         firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.SpeedUpgrades:FindFirstChild(tostring(currentSpeedUpgrade)).Main, 0)
