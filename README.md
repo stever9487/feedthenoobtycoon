@@ -3,7 +3,7 @@ script for [Feed The Noob Tycoon](https://www.roblox.com/games/10894722579/Feed-
 
 loadstring (stable):
 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/stever9487/feedthenoobtycoon/stable/script.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/stever9487/feedthenoobtycoon/main/script.lua"))()
 loadstring (dev):
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/stever9487/feedthenoobtycoon/dev/script.lua"))()
