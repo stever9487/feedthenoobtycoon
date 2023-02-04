@@ -72,8 +72,15 @@ end)
 autofarms:Toggle("Auto-Rebirth", false, function(value)
     _G.AutoRebirthEnabled = value
     while _G.AutoRebirthEnabled do
-        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
-        firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
+        game:GetService("Players").LocalPlayer.PlayerGui.FDN.BuyCashFrame.Visible = false
+        game:GetService("Lighting").UIBlur.Enabled = false
+        if tycoon.Unlockables.RebirthStatue.Main ~= nil then
+            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 1)
+            firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tycoon.Unlockables.RebirthStatue.Main, 0)
+        end
+        if tycoon.Unlocked.RebirthStatue then
+            fireproximityprompt(tycoon.Unlocked.RebirthStatue.RebirthPart.ProximityPrompt, 0)
+        end
         wait()
     end
 end)
